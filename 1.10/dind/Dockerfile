@@ -1,9 +1,9 @@
 FROM docker:1.10
 
 # https://github.com/docker/docker/blob/master/project/PACKAGERS.md#runtime-dependencies
-RUN apk add --no-cache \
-		btrfs-progs \
-		e2fsprogs \
+RUN apk add --update \
+		#btrfs-progs \
+  e2fsprogs \
 		iptables \
 		xz
 
