@@ -1,0 +1,27 @@
+matrix:
+  VERSION:
+    - "1.10"
+    - "1.10-dind"
+    - "1.9"
+    - "1.9-dind"
+
+build:
+  image: armhfbuild/alpine:3.3
+  commands:
+    - sed -i 's/FROM alpine/FROM armhfbuild\/alpine/' $${VERSION/-//}/Dockerfile
+    - sed -i 's/FROM docker/FROM armhfbuild\/docker/' $${VERSION/-//}/Dockerfile
+
+publish:
+  docker:
+    context: "$${VERSION/-//}"
+    file: "$${VERSION/-//}/Dockerfile"
+    username: $$DOCKER_USER
+    email: $$DOCKER_EMAIL
+    password: $$DOCKER_PASSWORD
+    repo: armhfbuild/docker
+    tag: "$$VERSION"
+
+notify:
+  slack:
+    webhook_url: $$SLACK_WEBHOOK_URL
+    channel: armhf
