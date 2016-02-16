@@ -35,6 +35,10 @@ publish:
       matrix:
         VERSION: '1.10'
 
+cache:
+  mount:
+    - /drone/docker
+
 notify:
   slack:
     webhook_url: $$SLACK_WEBHOOK_URL
