@@ -12,7 +12,8 @@ build:
     - sed -i 's/FROM docker/FROM armhfbuild\/docker/' $${VERSION/-//}/Dockerfile
 
 publish:
-  docker:
+  docker_version:
+    image: armhfplugins/drone-docker:docker-caching
     context: "$${VERSION/-//}"
     file: "$${VERSION/-//}/Dockerfile"
     username: $$DOCKER_USER
@@ -20,6 +21,19 @@ publish:
     password: $$DOCKER_PASSWORD
     repo: armhfbuild/docker
     tag: "$$VERSION"
+
+  docker_latest:
+    image: armhfplugins/drone-docker:docker-caching
+    context: "$${VERSION/-//}"
+    file: "$${VERSION/-//}/Dockerfile"
+    username: $$DOCKER_USER
+    email: $$DOCKER_EMAIL
+    password: $$DOCKER_PASSWORD
+    repo: armhfbuild/docker
+    tag: latest
+    when:
+      matrix:
+        VERSION: '1.10'
 
 notify:
   slack:
