@@ -8,7 +8,7 @@ matrix:
 build:
   image: armhfbuild/alpine:3.3
   commands:
-    - sed -i 's/FROM alpine/FROM armhfbuild\/alpine/' $${VERSION/-//}/Dockerfile
+    - sed -i 's/FROM alpine/FROM armhf\/alpine/' $${VERSION/-//}/Dockerfile
     - sed -i 's/FROM docker/FROM armhfbuild\/docker/' $${VERSION/-//}/Dockerfile
 
 publish:
