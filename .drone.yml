@@ -1,5 +1,7 @@
 matrix:
   VERSION:
+    - "1.12"
+    - "1.12-dind"
     - "1.10"
     - "1.10-dind"
     - "1.9"
@@ -33,7 +35,7 @@ publish:
     tag: latest
     when:
       matrix:
-        VERSION: '1.10'
+        VERSION: '1.12'
 
 cache:
   mount:
